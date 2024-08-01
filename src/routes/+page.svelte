@@ -1,8 +1,12 @@
 <script lang="ts">
-  import { Loading, Data, Fail } from "$lib/domain/state_abstract";
-  import { states } from "$lib/stores/states_store";
-  import { initialState, loadData, loadFail } from "$lib/stores/states_store";
   import { onMount } from "svelte";
+  import { Loading, Data, Fail } from "$lib/stores/states_abstract";
+  import {
+    states,
+    initialState,
+    loadData,
+    loadFail,
+  } from "$lib/stores/states_store";
 
   onMount(() => initialState());
 
@@ -12,7 +16,11 @@
 <body>
   <div class="state-container">
     <div class="state-container">
-      <button on:click={loadData}>Load Data</button>
+      <button
+        on:click={() => {
+          loadData({ data: "I AM DATA" });
+        }}>Load Data</button
+      >
       <button on:click={loadFail}>Load Fail</button>
     </div>
     {#if currentState instanceof Loading}
