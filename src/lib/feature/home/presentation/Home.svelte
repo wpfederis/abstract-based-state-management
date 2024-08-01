@@ -31,7 +31,6 @@
     }}
     buttonText={"LOAD FAIL"}
   />
-
   {#if currentState instanceof Loading}
     <span>LOADING</span>
   {/if}
