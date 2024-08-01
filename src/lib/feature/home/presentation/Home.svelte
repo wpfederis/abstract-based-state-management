@@ -11,55 +11,47 @@
     loadData,
     loadFail,
   } from "$lib/feature/home/stores/states_store";
+  import Button from "$lib/common/components/button/Button.svelte";
 
   onMount(() => initialState());
 
   $: currentState = $states;
 </script>
 
-<body>
-  <div class="state-container">
-    <div class="state-container">
-      <button
-        on:click={() => {
-          loadData({ data: "I AM DATA" });
-        }}>Load Data</button
-      >
-      <button on:click={loadFail}>Load Fail</button>
-    </div>
-    {#if currentState instanceof Loading}
-      <span>LOADING</span>
-    {/if}
-    {#if currentState instanceof Data}
-      <span>DATA: {currentState.name}</span>
-    {/if}
-    {#if currentState instanceof Fail}
-      <span>FAIL</span>
-    {/if}
-  </div>
-</body>
+<div class="state-container">
+  <Button
+    onClick={() => {
+      loadData({ data: "I AM DATA" });
+    }}
+    buttonText={"LOAD DATA"}
+  />
+  <Button
+    onClick={() => {
+      loadFail();
+    }}
+    buttonText={"LOAD FAIL"}
+  />
+
+  {#if currentState instanceof Loading}
+    <span>LOADING</span>
+  {/if}
+  {#if currentState instanceof Data}
+    <span>DATA: {currentState.name}</span>
+  {/if}
+  {#if currentState instanceof Fail}
+    <span>FAIL</span>
+  {/if}
+</div>
 
 <style lang="scss">
-  body {
-    display: flex;
-    margin: 0px;
-    padding: 0;
-    align-items: center;
-    justify-content: center;
-  }
-
-  button {
-    background-color: grey;
-  }
-
   .state-container {
     display: flex;
-    height: 250px;
-    width: 500px;
+    height: 100vh;
+    width: 100vw;
     flex-direction: column;
     background-color: white;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 25px;
   }
 </style>
