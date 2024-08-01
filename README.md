@@ -1,2 +1,2 @@
 # abstract-based-state-management
-Formulated abstract class based state management with store
+Formulated abstract class based state management with svelte store
