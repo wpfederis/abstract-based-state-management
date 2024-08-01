@@ -1,19 +1,10 @@
 <script lang="ts">
-  import { Data, Fail, Loading } from "$lib/domain/state_abstract";
+  import { Loading, Data, Fail } from "$lib/domain/state_abstract";
   import { states } from "$lib/stores/states_store";
+  import { initialState, loadData, loadFail } from "$lib/stores/states_store";
   import { onMount } from "svelte";
 
-  onMount(() => {
-    states.set(new Loading());
-  });
-
-  function loadData(): void {
-    states.set(new Data("Hello"));
-  }
-
-  function loadFail(): void {
-    states.set(new Fail());
-  }
+  onMount(() => initialState());
 
   $: currentState = $states;
 </script>
@@ -21,7 +12,7 @@
 <body>
   <div class="state-container">
     <div class="state-container">
-      <button on:click={loadData}>Load Data state</button>
+      <button on:click={loadData}>Load Data</button>
       <button on:click={loadFail}>Load Fail</button>
     </div>
     {#if currentState instanceof Loading}
