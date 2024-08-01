@@ -1,6 +1,6 @@
 import { writable  } from "svelte/store";    
-import { State } from "$lib/stores/states_abstract";
-import { Loading, Data, Fail } from "$lib/stores/states_abstract"; 
+import { State } from "$lib/feature/home/stores/states_abstract";
+import { Loading, Data, Fail } from "$lib/feature/home/stores/states_abstract"; 
 
 export const states = writable<State>(new Loading());
 
